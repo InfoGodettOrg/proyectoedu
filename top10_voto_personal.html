@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP 10 Voto Personal - Proyecto Edukashonal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .navbar a {
+            color: #bb86fc;
+        }
+
+        .navbar .home-btn {
+            font-weight: bold;
+        }
+
+        .navbar .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #1f1f1f;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu a {
+            color: #e0e0e0;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        body.dark-mode .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        .dropdown-menu .mode-toggle {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle:hover {
+            background-color: #333;
+        }
+
+        /* Main Content */
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h1 {
+            color: #e0e0e0;
+        }
+
+        .content-container {
+            width: 95%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode th {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 1rem;
+        }
+
+        body.dark-mode .back-btn {
+            background-color: #6200ee;
+            color: #ffffff;
+        }
+
+        .back-btn:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .home-btn {
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .back-btn {
+                font-size: 0.9rem;
+            }
+
+            table, th, td {
+                font-size: 0.8rem;
+                padding: 6px;
+            }
+
+            th, td {
+                word-wrap: break-word;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="home-btn">HOME</a>
+        <div class="menu-btn" onclick="toggleDropdown()">&#9776;</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="archive.html">Archive</a>
+        <a href="statistics.html">Statistics</a>
+        <a href="history.html">History</a>
+        <a href="tv_radio.html">TV | Radio</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <h1>TOP 10 Voto Personal</h1>
+
+        <table id="votoTable">
+          <thead>
+              <tr>
+                  <th>NR</th>
+                  <th>NOMBER</th>
+                  <th>FECHA NASEMENTU</th>
+                  <th>PARTIDO</th>
+                  <th onclick="sortTable(4)">VOTO</th>
+                  <th onclick="sortTable(5)">AÑA</th>
+                  <th>ELEKSHON</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>1</td>
+                  <td>MARTINA, DOMINICO FELIPE</td>
+                  <td>01/05/1935</td>
+                  <td>MAN</td>
+                  <td>25519</td>
+                  <td>1982</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td>LIBERIA-PETERS, MARIA PHILOMENA</td>
+                  <td>20/05/1941</td>
+                  <td>PNP</td>
+                  <td>24502</td>
+                  <td>1990</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>3</td>
+                  <td>GODETT, ANTHONY AMADEO</td>
+                  <td>12/11/1958</td>
+                  <td>FRENTE OBRERO</td>
+                  <td>19462</td>
+                  <td>2003</td>
+                  <td>KONSEHO INSULAR</td>
+              </tr>
+              <tr>
+                  <td>4</td>
+                  <td>de JONGH-ELHAGE, EMILY</td>
+                  <td>07/12/1946</td>
+                  <td>PAR</td>
+                  <td>19224</td>
+                  <td>2010</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>5</td>
+                  <td>GODETT, WILSON</td>
+                  <td>11/08/1932 - 19/04/1995</td>
+                  <td>FRENTE OBRERO</td>
+                  <td>17504</td>
+                  <td>1975</td>
+                  <td>KONSEHO INSULAR</td>
+              </tr>
+              <tr>
+                  <td>6</td>
+                  <td>PISAS, GILMAR "PIK"</td>
+                  <td>28/10/1971</td>
+                  <td>MFK</td>
+                  <td>16912</td>
+                  <td>2021</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>7</td>
+                  <td>WIELS, HELMIN MAGNO</td>
+                  <td>09/12/1958 - 05/05/2013</td>
+                  <td>PUEBLO SOBERANO</td>
+                  <td>16090</td>
+                  <td>2012</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>8</td>
+                  <td>RHUGGENAATH, EUGENE</td>
+                  <td>04/02/1970</td>
+                  <td>PAR</td>
+                  <td>15049</td>
+                  <td>2017</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>9</td>
+                  <td>SCHOTTE, GERRIT FRANCISCO</td>
+                  <td>09/09/1974</td>
+                  <td>MFK</td>
+                  <td>13512</td>
+                  <td>2012</td>
+                  <td>STATEN</td>
+              </tr>
+              <tr>
+                  <td>10</td>
+                  <td>da COSTA GOMEZ, MOISES FRUMENCIO</td>
+                  <td>27/10/1907 - 22/11/1966</td>
+                  <td>PNP</td>
+                  <td>12834</td>
+                  <td>1949</td>
+                  <td>STATEN</td>
+              </tr>
+          </tbody>
+      </table>
+
+        <a href="elections.html" class="back-btn">← Back to Elections</a>
+    </div>
+
+    <script>
+        // Function to sort the table
+        function sortTable(n) {
+            const table = document.getElementById("votoTable");
+            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc";
+
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                    if (dir == "asc") {
+                        if (parseFloat(x.innerHTML.replace(/,/g, '')) > parseFloat(y.innerHTML.replace(/,/g, ''))) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (parseFloat(x.innerHTML.replace(/,/g, '')) < parseFloat(y.innerHTML.replace(/,/g, ''))) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+        // Function to toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', mode);
+        }
+
+        // On page load, apply the saved theme
+        window.onload = function() {
+            let savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
