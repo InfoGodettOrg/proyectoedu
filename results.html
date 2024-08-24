@@ -117,7 +117,7 @@
         /* Main Content */
         h1,
         h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             text-align: center;
             margin: 20px 0;
             color: #333;
@@ -130,7 +130,7 @@
         }
 
         .container {
-            width: 90%;
+            width: 80%;
             margin: auto;
             overflow: hidden;
             padding: 20px;
@@ -142,7 +142,6 @@
             border-collapse: collapse;
             background-color: white;
             transition: background-color 0.3s;
-            font-size: 0.9rem;
         }
 
         body.dark-mode table {
@@ -216,7 +215,7 @@
         }
 
         .search-bar {
-            width: 80%;
+            width: 60%;
             padding: 10px;
             font-size: 1.2rem;
             border: 2px solid #ccc;
@@ -226,7 +225,7 @@
         }
 
         .year-filter {
-            width: 80%;
+            width: 20%;
             padding: 10px;
             font-size: 1.2rem;
             border: 2px solid #ccc;
@@ -285,40 +284,6 @@
 
         body.dark-mode .back-to-top:hover {
             background-color: #3700b3;
-        }
-
-        @media only screen and (max-width: 600px) {
-            h1,
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .container {
-                width: 100%;
-                padding: 10px;
-            }
-
-            .search-bar,
-            .year-filter {
-                width: 100%;
-            }
-
-            table {
-                font-size: 0.8rem;
-            }
-
-            th,
-            td {
-                padding: 6px;
-            }
-
-            button {
-                width: 100%;
-            }
-
-            .back-to-top {
-                width: 100%;
-            }
         }
     </style>
 </head>
@@ -2381,12 +2346,14 @@
     </div>
 
     <script>
+        // Function to toggle Dark Mode
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
             let mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
             localStorage.setItem('theme', mode);
         }
 
+        // On page load, apply the saved theme
         window.onload = function () {
             let savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -2403,6 +2370,7 @@
             }
         }
 
+        // Close dropdown if clicked outside
         window.onclick = function (event) {
             if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
                 var dropdownMenu = document.getElementById('dropdownMenu');
@@ -2412,14 +2380,87 @@
             }
         }
 
+        // Function to sort table columns
+        function sortTable(header, colIndex) {
+            const table = header.parentElement.parentElement.parentElement;
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.rows);
+            const isNumeric = !isNaN(rows[0].cells[colIndex].innerText);
+            const currentSort = header.dataset.sort || 'asc';
+
+            rows.sort((a, b) => {
+                const aText = a.cells[colIndex].innerText;
+                const bText = b.cells[colIndex].innerText;
+                if (isNumeric) {
+                    return currentSort === 'asc' ? aText - bText : bText - aText;
+                } else {
+                    return currentSort === 'asc' ? aText.localeCompare(bText) : bText.localeCompare(aText);
+                }
+            });
+
+            header.dataset.sort = currentSort === 'asc' ? 'desc' : 'asc';
+
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Function to search table
         function searchTable() {
-            // Add your search logic here
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const tables = document.querySelectorAll('table');
+
+            let anyMatch = false;
+
+            tables.forEach(table => {
+                const rows = table.querySelectorAll('tbody tr');
+                let tableMatch = false;
+                rows.forEach(row => {
+                    const cells = Array.from(row.cells);
+                    const match = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+                    if (match) {
+                        row.style.display = '';
+                        tableMatch = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                const heading = table.previousElementSibling; // Get the heading above the table
+                if (tableMatch) {
+                    table.style.display = '';
+                    heading.style.display = ''; // Show the heading if there's a match
+                    anyMatch = true;
+                } else {
+                    table.style.display = 'none';
+                    heading.style.display = 'none'; // Hide the heading if no match
+                }
+            });
+
+            // Show/hide back-to-top button based on search results
+            const backToTopButton = document.querySelector('.back-to-top');
+            backToTopButton.style.display = anyMatch ? 'block' : 'none';
         }
 
+        // Function to filter tables by year
         function filterByYear() {
-            // Add your year filter logic here
+            const yearFilter = document.getElementById('yearFilter').value;
+            const tables = document.querySelectorAll('table');
+            const headings = document.querySelectorAll('h2[data-year]');
+
+            headings.forEach(heading => {
+                const year = heading.getAttribute('data-year');
+                const table = heading.nextElementSibling;
+                if (yearFilter === '' || year === yearFilter) {
+                    heading.style.display = '';
+                    table.style.display = '';
+                } else {
+                    heading.style.display = 'none';
+                    table.style.display = 'none';
+                }
+            });
         }
 
+        // Function to scroll to top
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
