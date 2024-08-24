@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,7 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
-            transition: background-color 0.3s, color 0.5s;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Dark Mode */
@@ -54,6 +53,10 @@
         .navbar .menu-btn {
             font-size: 1.5rem;
             cursor: pointer;
+            color: white;
+            background: none;
+            border: none;
+            display: inline-block;
         }
 
         .dropdown-menu {
@@ -116,7 +119,7 @@
 
         /* Main Content */
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             text-align: center;
             margin: 20px 0;
             color: #333;
@@ -128,9 +131,9 @@
         }
 
         .search-container {
-            width: 90%;
+            width: 100%;
             max-width: 600px;
-            margin: 40px auto;
+            margin: 80px auto 40px auto;
             text-align: center;
         }
 
@@ -161,7 +164,7 @@
             cursor: pointer;
             display: inline-block;
             margin-left: -5px;
-            margin-top: 10px;
+            margin-top: 10px; /* Added margin-top for spacing */
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -170,63 +173,24 @@
             color: #ffffff;
         }
 
-        .search-results {
-            max-width: 600px;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-
-        .search-results ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .search-results li {
-            background-color: #fff;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.dark-mode .search-results li {
-            background-color: #2c2c2c;
-            color: #e0e0e0;
-        }
-
-        .search-results a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1rem;
-            display: block;
-            transition: color 0.3s;
-        }
-
-        body.dark-mode .search-results a {
-            color: #bb86fc;
-        }
-
         .thumbnails {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            width: 90%;
+            justify-content: space-between;
+            width: 100%;
             max-width: 800px;
-            margin: 20px auto;
+            margin: 0 auto;
         }
 
         .thumbnail {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 200px;
+            width: 23%;
             text-align: center;
             padding: 20px;
             transition: transform 0.3s, background-color 0.3s, color 0.3s;
-            text-decoration: none;
+            margin: 0 10px; /* Space between thumbnails */
+            text-decoration: none; /* Remove underline from links */
         }
 
         body.dark-mode .thumbnail {
@@ -236,6 +200,13 @@
 
         .thumbnail:hover {
             transform: translateY(-5px);
+        }
+
+        .thumbnail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
 
         .thumbnail h3 {
@@ -258,9 +229,23 @@
         body.dark-mode .thumbnail p {
             color: #bbb;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .thumbnail {
+                width: 48%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .thumbnail {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
-
 <body>
 
     <!-- Navigation Bar -->
@@ -283,25 +268,24 @@
     <!-- Main Content -->
     <h1>Proyecto Edukashonal</h1>
 
-    <div class="search-container">
-        <input type="text" class="search-bar" id="searchInput" placeholder="Search for articles..." onkeypress="handleKeyPress(event)">
-        <button class="search-button" onclick="redirectToArchive()">Search</button>
-    </div>
-
     <div class="thumbnails">
         <a href="archive.html" class="thumbnail">
+            <img src="archive_thumbnail.jpg" alt="Archive">
             <h3>Archive</h3>
             <p>Access the complete archive of news articles dating back to 2020.</p>
         </a>
         <a href="statistics.html" class="thumbnail">
+            <img src="statistics_thumbnail.jpg" alt="Statistics">
             <h3>Statistics</h3>
             <p>Explore statistics and data visualizations related to the news.</p>
         </a>
         <a href="history.html" class="thumbnail">
+            <img src="history_thumbnail.jpg" alt="History">
             <h3>History</h3>
             <p>Dive into the historical context behind major news events.</p>
         </a>
         <a href="tv_radio.html" class="thumbnail">
+            <img src="tv_radio_thumbnail.jpg" alt="TV | Radio">
             <h3>TV | Radio</h3>
             <p>Watch news broadcasts and listen to radio shows on various topics.</p>
         </a>
@@ -316,7 +300,7 @@
         }
 
         // On page load, apply the saved theme
-        window.onload = function () {
+        window.onload = function() {
             let savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -350,7 +334,7 @@
         }
 
         // Close dropdown if clicked outside
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
                 var dropdownMenu = document.getElementById('dropdownMenu');
                 if (dropdownMenu.style.display === 'block') {
@@ -361,5 +345,4 @@
     </script>
 
 </body>
-
 </html>
