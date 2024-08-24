@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 - Partidonan ku Mas Voto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .navbar a {
+            color: #bb86fc;
+        }
+
+        .navbar .home-btn {
+            font-weight: bold;
+        }
+
+        .navbar .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #1f1f1f;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu a {
+            color: #e0e0e0;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        body.dark-mode .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        .dropdown-menu .mode-toggle {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle:hover {
+            background-color: #333;
+        }
+
+        /* Main Content */
+        h1,
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2 {
+            color: #e0e0e0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode table {
+            background-color: #2c2c2c;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode th,
+        body.dark-mode td {
+            color: #e0e0e0;
+            border-color: #333;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        body.dark-mode th {
+            background-color: #6200ee;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        body.dark-mode tr:nth-child(even) {
+            background-color: #1f1f1f;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        body.dark-mode tr:hover {
+            background-color: #333;
+        }
+
+        button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode button {
+            background-color: #6200ee;
+            color: #ffffff;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        body.dark-mode button:hover {
+            background-color: #3700b3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="home-btn">HOME</a>
+        <div class="menu-btn" onclick="toggleDropdown()">&#9776;</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="archive.html">Archive</a>
+        <a href="statistics.html">Statistics</a>
+        <a href="history.html">History</a>
+        <a href="tv_radio.html">TV | Radio</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Top 10 - Partidonan ku Mas Voto</h1>
+
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Date</th>
+                    <th>Partido</th>
+                    <th onclick="sortTable(2)">Voto</th>
+                    <th onclick="sortTable(3)">Asiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>25/Feb/94</td>
+                    <td>PAR</td>
+                    <td>33996</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>12/Apr/91</td>
+                    <td>NVP</td>
+                    <td>33152</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>19/May/67</td>
+                    <td>DP</td>
+                    <td>30033</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>25/Jun/82</td>
+                    <td>MAN</td>
+                    <td>28209</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>25/Apr/75</td>
+                    <td>FOL</td>
+                    <td>24299</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>04/Jul/05</td>
+                    <td>PS</td>
+                    <td>19715</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>04/Jul/05</td>
+                    <td>MFK</td>
+                    <td>18450</td>
+                    <td>5</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="back-to-top" onclick="scrollToTop()">Back to Top</button>
+        <button onclick="window.location.href='elections.html'">Back to Elections</button>
+    </div>
+
+    <script>
+        // Function to toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', mode);
+        }
+
+        // On page load, apply the saved theme
+        window.onload = function () {
+            let savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'none') {
+                dropdownMenu.style.display = 'block';
+            } else {
+                dropdownMenu.style.display = 'none';
+            }
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function (event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to sort table columns
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("resultsTable");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (n === 2 || n === 3) {
+                            if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (n === 2 || n === 3) {
+                            if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+
+</html>

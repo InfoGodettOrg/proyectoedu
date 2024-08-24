@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Kaida di Brug - Proyecto Edukashonal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .container {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h1 {
+            color: #e0e0e0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 20px;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h2 {
+            color: #bbb;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode p {
+            color: #ccc;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 48%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        body.dark-mode .image-container img {
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            border-left: 4px solid #ccc;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        body.dark-mode .quote {
+            background-color: #2c2c2c;
+            border-color: #555;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            background-color: #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .back-link {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+
+        .back-link:hover {
+            background-color: #ccc;
+        }
+
+        body.dark-mode .back-link:hover {
+            background-color: #444;
+        }
+
+        .leader-section {
+            margin: 40px 0;
+        }
+
+        .leader-section img {
+            max-width: 300px;
+            margin-right: 20px;
+            border-radius: 8px;
+            float: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        body.dark-mode .leader-section img {
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .navbar a {
+            color: #bb86fc;
+        }
+
+        .navbar .home-btn {
+            font-weight: bold;
+        }
+
+        .navbar .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #1f1f1f;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu a {
+            color: #e0e0e0;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        body.dark-mode .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        .dropdown-menu .mode-toggle {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="home-btn">HOME</a>
+        <div class="menu-btn" onclick="toggleDropdown()">&#9776;</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="archive.html">Archive</a>
+        <a href="statistics.html">Statistics</a>
+        <a href="history.html">History</a>
+        <a href="tv_radio.html">TV | Radio</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+    </div>
+
+    <div class="container">
+        <h1>Historia Kaida di Brug</h1>
+
+        <h2>Overview</h2>
+        <p>The Juliana Bridge, one of the most iconic structures in Curaçao, collapsed during its construction on November 6, 1967. The event, referred to as "Kaida di Brug" in Papiamentu, was a major incident in the island's history, as the bridge was set to become a vital link between the Punda and Otrobanda districts of Willemstad.</p>
+        <p>The collapse resulted in significant loss, including the lives of 15 workers. The tragedy had a lasting impact on the community and led to major changes in construction practices on the island.</p>
+
+        <div class="image-container">
+            <img src="juliana_bridge_before.jpg" alt="Juliana Bridge Before Collapse">
+            <img src="juliana_bridge_collapse.jpg" alt="Juliana Bridge Collapse">
+        </div>
+
+        <h2>The Construction of the Juliana Bridge</h2>
+        <p>Construction of the Juliana Bridge began in the 1960s as a solution to the traffic congestion caused by the Queen Emma Bridge, a pontoon bridge that connected Punda and Otrobanda. The Juliana Bridge was designed to be high enough to allow ships to pass underneath, reducing delays for both vehicular and maritime traffic.</p>
+        <p>The bridge was named after Queen Juliana of the Netherlands and was seen as a symbol of modernization and progress for Curaçao. The project was ambitious, aiming to build one of the tallest bridges in the Caribbean at the time.</p>
+
+        <h2>The Day of the Collapse</h2>
+        <p>On November 6, 1967, as construction was nearing completion, the central section of the bridge suddenly gave way. The collapse occurred without warning, sending the partially completed structure plummeting into the water below.</p>
+        <p>The disaster claimed the lives of 15 construction workers and injured many others. The immediate aftermath saw rescue efforts hindered by the unstable wreckage and the scale of the disaster.</p>
+
+        <div class="image-container">
+            <img src="juliana_bridge_aftermath.jpg" alt="Aftermath of the Juliana Bridge Collapse">
+            <img src="juliana_bridge_reconstruction.jpg" alt="Reconstruction of Juliana Bridge">
+        </div>
+
+        <h2>Aftermath and Reconstruction</h2>
+        <p>The collapse of the Juliana Bridge was a devastating blow to the community. The incident prompted an investigation into the causes of the collapse, which revealed structural weaknesses and errors in the construction process. The tragedy led to stricter building regulations and a renewed focus on safety in construction projects.</p>
+        <p>Despite the setback, plans to rebuild the bridge were quickly put in place. The new Juliana Bridge was completed and opened to traffic in 1974. Standing at 185 feet above sea level, it remains a crucial part of Curaçao's infrastructure and a symbol of the island's resilience.</p>
+
+        <div class="quote">
+            "The collapse of the Juliana Bridge was a tragedy that shook Curaçao to its core, but it also served as a catalyst for change, leading to better construction practices and stronger safety regulations."
+        </div>
+
+        <h2>Legacy of the Juliana Bridge</h2>
+        <p>Today, the Juliana Bridge is not only a vital transportation link but also a landmark that represents both the tragedy and triumph of Curaçao. The bridge stands as a reminder of the importance of safety and the perseverance of the people of Curaçao in the face of adversity.</p>
+        <p>The memory of those who lost their lives in the collapse is honored by the community, and the lessons learned from the incident continue to influence construction practices on the island.</p>
+
+        <a href="history.html" class="back-link">← Back to History</a>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', mode);
+        }
+
+        // On page load, apply the saved theme
+        window.onload = function() {
+            let savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+    </script>
+
+</body>
+</html>
