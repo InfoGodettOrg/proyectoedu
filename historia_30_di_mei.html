@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia 30 di Mei - Proyecto Edukashonal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .navbar a {
+            color: #bb86fc;
+        }
+
+        .navbar .home-btn {
+            font-weight: bold;
+        }
+
+        .navbar .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #1f1f1f;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu a {
+            color: #e0e0e0;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        body.dark-mode .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        .dropdown-menu .mode-toggle {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle:hover {
+            background-color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .container {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h1 {
+            color: #e0e0e0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 20px;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h2 {
+            color: #bbb;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 48%;
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .image-container img {
+                max-width: 100%;
+            }
+        }
+
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            border-left: 4px solid #ccc;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .quote {
+            background-color: #1f1f1f;
+            border-color: #333;
+            color: #e0e0e0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+            text-decoration: none;
+            background-color: #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #ccc;
+        }
+
+        body.dark-mode .back-link {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .back-link:hover {
+            background-color: #555;
+        }
+
+        .leader-section {
+            margin: 40px 0;
+            overflow: hidden;
+        }
+
+        .leader-section img {
+            max-width: 300px;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 8px;
+            float: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        body.dark-mode .leader-section img {
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .leader-section img {
+                float: none;
+                margin-right: 0;
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="home-btn">HOME</a>
+        <div class="menu-btn" onclick="toggleDropdown()">&#9776;</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="archive.html">Archive</a>
+        <a href="statistics.html">Statistics</a>
+        <a href="history.html">History</a>
+        <a href="tv_radio.html">TV | Radio</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+    </div>
+
+    <div class="container">
+        <h1>Historia 30 di Mei</h1>
+
+        <h2>Overview</h2>
+        <p>The 30th of May 1969, commonly referred to as "30 di Mei," is a significant date in the history of Curaçao. This day marks the beginning of the workers' revolt in Willemstad, which was sparked by the harsh economic conditions, social inequality, and poor labor conditions faced by the working class on the island.</p>
+        <p>The events of 30 di Mei led to widespread protests, strikes, and eventually riots, which resulted in significant damage to property, loss of lives, and a profound impact on the socio-political landscape of Curaçao.</p>
+
+        <div class="image-container">
+            <img src="30_di_mei_protests.jpg" alt="Protests on 30 di Mei">
+            <img src="30_di_mei_destruction.jpg" alt="Destruction during 30 di Mei">
+        </div>
+
+        <h2>The Lead-Up to the Events</h2>
+        <p>In the years leading up to 1969, Curaçao experienced a period of economic decline following the post-war boom. The island's economy, heavily dependent on the oil refinery, saw a reduction in activity, leading to widespread unemployment and social unrest.</p>
+        <p>Workers' dissatisfaction grew as wages stagnated and working conditions deteriorated. The labor unions, which represented the working class, increasingly called for better wages and conditions, but their pleas were largely ignored by both the government and employers.</p>
+
+        <h2>The Day of the Uprising</h2>
+        <p>On May 30th, 1969, the discontent reached a boiling point. Workers from the oil refinery, joined by other dissatisfied citizens, marched through the streets of Willemstad. The initially peaceful protest quickly turned violent as clashes broke out between the protesters and the police.</p>
+        <p>Buildings were set on fire, shops were looted, and the streets of Willemstad were engulfed in chaos. The government declared a state of emergency, and the Dutch marines were eventually called in to restore order.</p>
+
+        <div class="image-container">
+            <img src="30_di_mei_aftermath.jpg" alt="Aftermath of 30 di Mei">
+            <img src="30_di_mei_marines.jpg" alt="Dutch Marines in Curaçao">
+        </div>
+
+        <h2>The Aftermath</h2>
+        <p>The aftermath of 30 di Mei was profound. The events led to significant political changes, including the resignation of the government. The uprising also brought attention to the dire conditions faced by the working class and led to improvements in labor laws and wages.</p>
+        <p>In the years following the events, May 30th became a day of reflection and remembrance in Curaçao, highlighting the struggles and resilience of the island's working class.</p>
+
+        <div class="quote">
+            "30 di Mei was not just a day of violence, but a turning point in our history that forced us to confront the deep-rooted inequalities in our society."
+        </div>
+
+        <h2>Revolt Leaders: Wilson "Papa" Godett and Others</h2>
+        <p>One of the most prominent figures during the 30 di Mei uprising was Wilson "Papa" Godett. As a leader of the workers' movement and a vocal critic of the socio-economic conditions on the island, Godett played a crucial role in organizing the protests and voicing the demands of the working class.</p>
+
+        <div class="leader-section">
+            <img src="wilson_papa_godett.jpg" alt="Wilson Papa Godett">
+            <p>Born in Curaçao, Wilson Godett was deeply involved in labor activism and was a member of the General Workers' Union (Algemene Werknemers Bond, or AWB). His nickname, "Papa," reflected the respect he commanded among the workers. Godett was known for his fiery speeches and his unwavering commitment to improving the lives of the working class.</p>
+            <p>During the 30 di Mei protests, Godett was at the forefront, leading the march through Willemstad. His leadership and defiance against the establishment made him a target for the authorities, but also a hero among the people.</p>
+            <p>After the events of 30 di Mei, Wilson Godett continued to be an influential figure in Curaçao's political landscape, advocating for social justice and workers' rights until his passing.</p>
+        </div>
+
+        <div class="leader-section">
+            <img src="other_leader.jpg" alt="Other Leader">
+            <p>Other leaders also played crucial roles in the 30 di Mei events, each contributing to the broader movement that sought to bring attention to the inequalities faced by the working class. Their collective efforts were instrumental in bringing about the changes that followed the uprising.</p>
+        </div>
+
+        <a href="history.html" class="back-link">← Back to History</a>
+    </div>
+
+    <script>
+        // Function to toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', mode);
+        }
+
+        // On page load, apply the saved theme
+        window.onload = function() {
+            let savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

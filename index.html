@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Edukashonal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .navbar a {
+            color: #bb86fc;
+        }
+
+        .navbar .home-btn {
+            font-weight: bold;
+        }
+
+        .navbar .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #1f1f1f;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu a {
+            color: #e0e0e0;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        body.dark-mode .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        .dropdown-menu .mode-toggle {
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .dropdown-menu .mode-toggle:hover {
+            background-color: #333;
+        }
+
+        /* Main Content */
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode h1 {
+            color: #e0e0e0;
+        }
+
+        .search-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 80%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body.dark-mode .search-bar {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            border-color: #333;
+        }
+
+        .search-button {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            margin-left: -5px;
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .search-button {
+            background-color: #6200ee;
+            color: #ffffff;
+        }
+
+        .search-results {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .search-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .search-results li {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .search-results li {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        .search-results a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .search-results a {
+            color: #bb86fc;
+        }
+
+        .thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .thumbnail {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, background-color 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        body.dark-mode .thumbnail {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-5px);
+        }
+
+        .thumbnail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .thumbnail h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .thumbnail h3 {
+            color: #e0e0e0;
+        }
+
+        .thumbnail p {
+            font-size: 1rem;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        body.dark-mode .thumbnail p {
+            color: #bbb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="home-btn">HOME</a>
+        <div class="menu-btn" onclick="toggleDropdown()">&#9776;</div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="archive.html">Archive</a>
+        <a href="statistics.html">Statistics</a>
+        <a href="history.html">History</a>
+        <a href="tv_radio.html">TV | Radio</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <button class="mode-toggle" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+    </div>
+
+    <!-- Main Content -->
+    <h1>Proyecto Edukashonal</h1>
+
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search for articles..." onkeypress="handleKeyPress(event)">
+        <button class="search-button" onclick="redirectToArchive()">Search</button>
+    </div>
+
+    <div class="thumbnails">
+        <a href="archive.html" class="thumbnail">
+            <img src="archive_thumbnail.jpg" alt="Archive">
+            <h3>Archive</h3>
+            <p>Access the complete archive of news articles dating back to 2020.</p>
+        </a>
+        <a href="statistics.html" class="thumbnail">
+            <img src="statistics_thumbnail.jpg" alt="Statistics">
+            <h3>Statistics</h3>
+            <p>Explore statistics and data visualizations related to the news.</p>
+        </a>
+        <a href="history.html" class="thumbnail">
+            <img src="history_thumbnail.jpg" alt="History">
+            <h3>History</h3>
+            <p>Dive into the historical context behind major news events.</p>
+        </a>
+        <a href="tv_radio.html" class="thumbnail">
+            <img src="tv_radio_thumbnail.jpg" alt="TV | Radio">
+            <h3>TV | Radio</h3>
+            <p>Watch news broadcasts and listen to radio shows on various topics.</p>
+        </a>
+    </div>
+
+    <script>
+        // Function to toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', mode);
+        }
+
+        // On page load, apply the saved theme
+        window.onload = function () {
+            let savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        // Function to redirect to the archive page with the search query
+        function redirectToArchive() {
+            const searchInput = document.getElementById('searchInput').value;
+            if (searchInput) {
+                window.location.href = `archive.html?search=${encodeURIComponent(searchInput)}`;
+            } else {
+                alert("Please enter a search term.");
+            }
+        }
+
+        // Function to handle Enter key press for search
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                redirectToArchive();
+            }
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function (event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.mode-toggle')) {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

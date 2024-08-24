@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Edukashonal</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            font-size: 1.2rem;
+        }
+
+        .navbar .home-btn {
+            font-weight: bold;
+        }
+
+        .navbar .menu-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+            overflow: hidden;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .thumbnail {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s, background-color 0.3s, color 0.3s;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-5px);
+        }
+
+        .thumbnail img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .thumbnail h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .thumbnail p {
+            font-size: 1rem;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .navbar {
+            background-color: #1f1f1f;
+        }
+
+        .dark-mode .thumbnail {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .dropdown-menu {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .dropdown-menu a {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        /* Mode Toggle Button */
+        .mode-toggle {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .thumbnail {
+                width: 48%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .thumbnail {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="index.html" class="home-btn">HOME</a>
+        <div class="menu-btn" onclick="toggleDropdown()">&#9776;</div>
+        <button id="mode-toggle" class="mode-toggle">🌓</button>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="archive.html">Archive</a>
+        <a href="statistics.html">Statistics</a>
+        <a href="history.html">History</a>
+        <a href="tv_radio.html">TV | Radio</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- Main Content -->
+    <h1>Proyecto Edukashonal</h1>
+
+    <div class="thumbnails">
+        <a href="archive.html" class="thumbnail">
+            <img src="archive_thumbnail.jpg" alt="Archive">
+            <h3>Archive</h3>
+            <p>Access the complete archive of news articles dating back to 2020.</p>
+        </a>
+        <a href="statistics.html" class="thumbnail">
+            <img src="statistics_thumbnail.jpg" alt="Statistics">
+            <h3>Statistics</h3>
+            <p>Explore statistics and data visualizations related to the news.</p>
+        </a>
+        <a href="history.html" class="thumbnail">
+            <img src="history_thumbnail.jpg" alt="History">
+            <h3>History</h3>
+            <p>Dive into the historical context behind major news events.</p>
+        </a>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        }
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                }
+            }
+        }
+
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        // Check if dark mode is already enabled in localStorage
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            modeToggle.textContent = '☀️';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                modeToggle.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                modeToggle.textContent = '🌓';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+</body>
+</html>
